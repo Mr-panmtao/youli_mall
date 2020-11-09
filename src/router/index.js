@@ -2,41 +2,33 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // login
-const Login = () =>
-  import(
-    /* webpackChunkName: "login_home_welcome" */ '../views/user/Login.vue'
-  )
+const Login = () => import('../views/user/Login.vue')
 
 // home
-const Home = () =>
-  import(/* webpackChunkName: "login_home_welcome" */ '../views/Home.vue')
+const Home = () => import('../views/Home.vue')
 
 // welcome
-const Welcome = () =>
-  import(
-    /* webpackChunkName: "login_home_welcome" */ '../views/user/Welcome.vue'
-  )
+const Welcome = () => import('../views/user/Welcome.vue')
 
 // 角色管理
-const Roles = () =>
-  import(
-    /* webpackChunkName: "roles_rights_menu" */ '../views/system/Roles.vue'
-  )
+const Roles = () => import('../views/system/Roles.vue')
 // 权限管理
-const Rights = () =>
-  import(
-    /* webpackChunkName: "roles_rights_menu_user-admin" */ '../views/system/Rights.vue'
-  )
+const Rights = () => import('../views/system/Rights.vue')
 // 菜单管理
-const Menu = () =>
-  import(
-    /* webpackChunkName: "roles_rights_menu_user-admin" */ '../views/system/Menu.vue'
-  )
-  // 用户管理-系统管理
-const UserAdmin = () =>
-  import(
-  /* webpackChunkName: "roles_rights_menu_user-admin" */ '../views/system/User-admin.vue'
-  )
+const Menu = () => import('../views/system/Menu.vue')
+// 用户管理-系统管理
+const UserAdmin = () => import('../views/system/User-admin.vue')
+
+// 商品分类
+const Category = () => import('../views/goods/Category.vue')
+// 商品管理
+const Product = () => import('../views/goods/Product.vue')
+// 商品列表
+const AddGoods = () => import('../views/goods/addGoods.vue')
+// 商品编辑
+const updateGoods = () => import('../views/goods/updateGoods.vue')
+// 商品评价
+const Rating = () => import('../views/goods/Rating.vue')
 
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 const originalPush = VueRouter.prototype.push
@@ -58,7 +50,12 @@ const routes = [
       { path: '/roles', component: Roles },
       { path: '/rights', component: Rights },
       { path: '/menu', component: Menu },
-      { path: '/user-admin', component: UserAdmin }
+      { path: '/user-admin', component: UserAdmin },
+      { path: '/category', component: Category },
+      { path: '/product', component: Product },
+      { name: 'addGoods', path: '/addGoods', component: AddGoods },
+      { name: 'updateGoods', path: '/updateGoods', component: updateGoods },
+      { path: '/rating', component: Rating }
     ]
   }
 ]

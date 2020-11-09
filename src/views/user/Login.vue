@@ -74,8 +74,10 @@ export default {
             window.sessionStorage.setItem('token', res.token)
             // 存储用户信息
             window.sessionStorage.setItem('userInfo', JSON.stringify(...res.data))
-            // 存储角色
-            Cookies.set('userRole', res.data[0].r_id)
+            // 存储角色 (加密)
+            const str = 'userRole'
+            const enc = this.encryptString(str)
+            Cookies.set(enc, this.encryptString(res.data[0].r_id))
             this.$router.push('/home')
           }
         }

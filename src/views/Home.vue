@@ -60,9 +60,8 @@
             <i v-show="!stretch" class="el-icon-s-fold"></i>
             <i v-show="stretch" class="el-icon-s-unfold"></i>
           </div>
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item>首页</el-breadcrumb-item>
-          </el-breadcrumb>
+            <el-button icon="el-icon-refresh-right" @click="Refresh"  type="primary" size="mini">刷 新</el-button>
+            <!-- <el-button  icon="el-icon-back" @click="upper" type="primary"  size="mini"> 返 回 </el-button> -->
         </div>
         <div class="userInfo">
           <el-dropdown @command="handleCommand">
@@ -213,7 +212,7 @@ export default {
       const navInfo = JSON.parse(window.sessionStorage.getItem('tagNaveList'))
       return navInfo
     },
-    // 尺寸侧边栏某一项选中
+    // 侧边栏某一项选中
     menuActive (value) {
       window.sessionStorage.setItem('isChcked', value)
     },
@@ -318,6 +317,15 @@ export default {
           }
         }
       })
+    },
+
+    // 刷新
+    Refresh () {
+      this.$router.go(0)
+    },
+    // 上一级
+    upper () {
+      this.$router.go(-1)
     }
   }
 }
@@ -330,20 +338,29 @@ export default {
 .el-header {
   height: 50px !important;
   display: flex;
-  padding: 0 10px;
+  padding: 0 10px 0 0;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
   color: #333;
 
   .left-nav {
+    height: 100%;
     display: flex;
     align-items: center;
     color: #495060;
     .stretch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-right: 20px;
       font-size: 20px;
+      width: 50px;
+      height: 100%;
       cursor: pointer;
+    }
+    .stretch:hover {
+      background:rgba(0,0,0,.025);
     }
   }
 
@@ -408,7 +425,7 @@ export default {
   transition: all 0.5s;
 }
 .noactives {
-  width: 240px !important;
+  width: 220px !important;
   transition: all 0.5s;
 }
 .el-main {

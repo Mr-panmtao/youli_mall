@@ -31,10 +31,26 @@ import {
   InputNumber,
   Switch,
   Avatar,
-  Upload
+  Upload,
+  Image,
+  Cascader,
+  Steps,
+  Step,
+  Tabs,
+  TabPane,
+  Alert,
+  Pagination
 } from 'element-ui'
 
 Vue.use(Button)
+Vue.use(Pagination)
+Vue.use(Alert)
+Vue.use(Tabs)
+Vue.use(TabPane)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(Image)
+Vue.use(Cascader)
 Vue.use(Switch)
 Vue.use(Upload)
 Vue.use(Avatar)

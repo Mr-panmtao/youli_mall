@@ -121,6 +121,7 @@
   </div>
 </template>
 <script>
+import { getTreeData } from '@/views/utils/Tree'
 export default {
   data () {
     return {
@@ -167,6 +168,7 @@ export default {
     async getRoles () {
       const { data: res } = await this.$axios.get('getRoles')
       this.roles_list = res.data
+      // console.log(this.roles_list)
     },
     // 关闭添加角色modal
     handleClose () {
@@ -222,15 +224,24 @@ export default {
     isRightsShow (item) {
       this.rolesInfo = item
 
-      // 设置权限默认某些项选中
-      item.children.forEach(item => {
-        if (item.r_id !== 0) {
-          this.checkedRights.push(item.id)
-        }
-      })
+      // 克隆 ===> 更改原数据第二次点击会报错
+      const values = JSON.parse(JSON.stringify(item))
+      const i = getTreeData(values.children)
+      values.children = i
+      // 设置Tree默认选中
+      this.fillerRights(values, this.checkedRights)
 
       this.getRights()
       this.dialogRights = true
+    },
+    // 递归函数 筛选已有权限默认打钩
+    fillerRights (node, arr) {
+      if (!node.children) {
+        return arr.push(node.id)
+      }
+      node.children.forEach(item => {
+        this.fillerRights(item, arr)
+      })
     },
     // 获取权限列表
     async getRights () {

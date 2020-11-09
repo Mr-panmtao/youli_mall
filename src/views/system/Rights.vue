@@ -10,21 +10,20 @@
       >
     </div>
     <div class="rights-body">
-      <el-table :data="rights_list"  style="width: 100%" row-key="id">
-        <el-table-column
-          type="index"
-          align="center"
-          label="#"
-          width="100px"
-        ></el-table-column>
+      <el-table :data="rights_list" style="width: 100%" row-key="id">
         <el-table-column prop="rights_name" align="center" label="权限名称">
         </el-table-column>
         <el-table-column prop="rights_url" align="center" label="路径">
         </el-table-column>
         <el-table-column align="center" label="权限等级">
           <template slot-scope="scope">
-            <el-tag type="success" v-if="scope.row.r_id === 0">一 级</el-tag>
-            <el-tag type="warning" v-if="scope.row.r_id > 0">二 级</el-tag>
+            <el-tag v-if="scope.row.rights_grade === 1">一 级</el-tag>
+            <el-tag type="success" v-if="scope.row.rights_grade === 2"
+              >二 级</el-tag
+            >
+            <el-tag type="warning" v-if="scope.row.rights_grade === 3"
+              >三 级</el-tag
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -44,20 +43,14 @@
         label-width="100px"
         class="demo-ruleForm"
       >
-        <el-form-item required label="上级权限" prop="r_id">
-          <el-select
-            clearable
+        <el-form-item label="上级权限" prop="r_id">
+          <el-cascader
+            style="width:100%"
+            placeholder="顶级权限"
             v-model="rightsForm.r_id"
-            placeholder="请选择活动区域"
-          >
-            <el-option label="顶级权限" value="0"></el-option>
-            <el-option
-              v-for="item in rights_list"
-              :key="item.id"
-              :label="item.rights_name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
+            :options="rights_list"
+            :props="options"
+          ></el-cascader>
         </el-form-item>
         <el-form-item required label="权限名称" prop="rights_name">
           <el-input
@@ -80,6 +73,7 @@
   </div>
 </template>
 <script>
+import { getTreeData } from '@/views/utils/Tree'
 export default {
   data () {
     return {
@@ -92,7 +86,8 @@ export default {
       rightsForm: {
         rights_name: '',
         rights_url: '',
-        r_id: '0'
+        r_id: ['0'],
+        rights_grade: 1
       },
       rightsRules: {
         rights_name: [
@@ -100,8 +95,13 @@ export default {
         ],
         rights_url: [
           { required: true, message: '请输入权限路径', trigger: 'blur' }
-        ],
-        r_id: [{ required: true, message: '请选择上级权限', trigger: 'change' }]
+        ]
+      },
+      options: {
+        expandTrigger: 'hover',
+        label: 'rights_name',
+        value: 'id',
+        checkStrictly: true
       }
     }
   },
@@ -112,7 +112,7 @@ export default {
     // 获取权限列表
     async getRights () {
       const { data: res } = await this.$axios.get('getRights')
-      this.rights_list = res.data
+      this.rights_list = getTreeData(res.data)
     },
 
     // 关闭添加权限modal
@@ -124,6 +124,14 @@ export default {
     saveRights () {
       this.$refs.ruleForm.validate(async valid => {
         if (valid) {
+          if (this.rightsForm.r_id[0] !== '0') {
+            this.rightsForm.rights_grade = this.rightsForm.r_id.length + 1
+          } else {
+            this.rightsForm.rights_grade = this.rightsForm.r_id.length
+          }
+          this.rightsForm.r_id = this.rightsForm.r_id[
+            this.rightsForm.r_id.length - 1
+          ]
           const { data: res } = await this.$axios.post(
             'addRights',
             this.rightsForm
@@ -146,7 +154,7 @@ export default {
   margin-right: 10px;
   background-color: #fff;
   .el-button {
-      margin: 10px;
+    margin: 10px;
   }
 }
 .rights-body {
