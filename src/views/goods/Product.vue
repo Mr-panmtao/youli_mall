@@ -55,12 +55,13 @@
       >
         <el-table-column align="center" type="selection" width="55">
         </el-table-column>
-        <el-table-column align="center" prop="id" label="编号" width="120">
+        <el-table-column align="center" prop="id" label="编号" width="50">
         </el-table-column>
         <el-table-column
           align="center"
           prop="goods_img"
           label="商品图片"
+          width="140"
         >
           <template slot-scope="scope">
             <el-image
@@ -70,10 +71,10 @@
           </template>
         </el-table-column>
         <el-table-column
-          align="center"
           prop="goods_name"
           label="商品名称"
           show-overflow-tooltip
+          width="470"
         >
         </el-table-column>
         <el-table-column
@@ -221,7 +222,6 @@ export default {
       })
       this.total = res.total
       this.goodsInfo = res.data
-      // console.log(this.goodsInfo)
     },
     // 获取分类数据
     async getCategory () {
@@ -278,8 +278,11 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(async () => {
+        const goodsType = item.specifications.length
+        // const info = { id: item.id, type: goodsType }
+        // console.log(info)
         const { data: res } = await this.$axios.get(
-          `delGoods?id=${item.id}`
+          `delGoods?id=${item.id}&&type=${goodsType}`
         )
         const type = res.status === 201 ? 'success' : 'error'
         this.$message({ message: res.msg, type })

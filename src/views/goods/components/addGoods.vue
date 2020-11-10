@@ -248,7 +248,13 @@
               <el-alert title="图文详情 (选填)" type="warning"> </el-alert>
             </div>
             <!-- 富文本编辑器 -->
-            <quill-editor v-model="goodsForm.goods_introduce"></quill-editor>
+            <quill-editor
+             @getEditorData="getEditorData"
+             :serviceUrl="action"
+             :limit="99"
+             :multiple="true"
+             :editorVal="goodsForm.goods_introduce"
+             ></quill-editor>
             <div class="saveProduct">
               <el-button type="primary" @click="addGoods">确 定</el-button>
             </div>
@@ -260,6 +266,7 @@
 </template>
 <script>
 import goodsrules from './tools.js'
+import quillEditor from '../../../components/quillEditor.vue'
 export default {
   data () {
     return {
@@ -333,6 +340,7 @@ export default {
     }
   },
   props: ['category_list', 'goodsInfo', 'code'],
+  components: { 'quill-editor': quillEditor },
   created () {
     this.getGoodsId()
     this.status = this.code
@@ -394,6 +402,11 @@ export default {
           }
         }
       })
+    },
+
+    // 获取富文本编辑器内容
+    getEditorData (val) {
+      this.goodsForm.goods_introduce = val
     },
 
     // tab点击

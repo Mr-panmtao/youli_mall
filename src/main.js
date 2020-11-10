@@ -11,11 +11,11 @@ import { showLoading, hideLoading } from './utils/loading.js'
 import { encryptString, decodeString } from './utils/encrypt'
 
 // 第三方富文本编辑器组件
-import VueQuillEditor from 'vue-quill-editor'
-// 样式
-import 'quill/dist/quill.core.css' // import styles
-import 'quill/dist/quill.snow.css' // for snow theme
-import 'quill/dist/quill.bubble.css' // for bubble theme
+// import VueQuillEditor from 'vue-quill-editor'
+// // 样式
+// import 'quill/dist/quill.core.css' // import styles
+// import 'quill/dist/quill.snow.css' // for snow theme
+// import 'quill/dist/quill.bubble.css' // for bubble theme
 
 // Cookies
 import Cookies from 'js-cookie'
@@ -61,7 +61,7 @@ axios.interceptors.response.use(config => {
 })
 
 // 全局注册富文本编辑器
-Vue.use(VueQuillEditor)
+// Vue.use(VueQuillEditor)
 
 // 配置表格
 Vue.component('TreeTable', ZkTable)
