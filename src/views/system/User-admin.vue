@@ -24,6 +24,24 @@
         </el-table-column>
         <el-table-column prop="username" align="center" label="用户名">
         </el-table-column>
+        <el-table-column
+          align="center"
+          prop="register_time"
+          label="注册时间"
+        >
+          <template slot-scope="scope">
+            <span>{{ scope.row.register_time | dateFormat }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          align="center"
+          prop="login_last"
+          label="最后登录"
+        >
+          <template slot-scope="scope">
+            <span>{{ scope.row.login_last | dateFormat }}</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="role_name" align="center" label="所属角色">
         </el-table-column>
         <el-table-column prop="is_enabled" align="center" label="状态">

@@ -30,6 +30,9 @@ const updateGoods = () => import('../views/goods/updateGoods.vue')
 // 商品评价
 const Rating = () => import('../views/goods/Rating.vue')
 
+// 用户列表
+const User = () => import('../views/user/User.vue')
+
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
@@ -55,7 +58,8 @@ const routes = [
       { path: '/product', component: Product },
       { name: 'addGoods', path: '/addGoods', component: AddGoods },
       { name: 'updateGoods', path: '/updateGoods', component: updateGoods },
-      { path: '/rating', component: Rating }
+      { path: '/rating', component: Rating },
+      { path: '/user', component: User }
     ]
   }
 ]

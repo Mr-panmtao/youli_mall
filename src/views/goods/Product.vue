@@ -1,13 +1,6 @@
 <template>
   <div class="container">
     <div class="header">
-      <!-- <el-button
-        @click="dialogGoods = true"
-        type="primary"
-        size="small"
-        icon="el-icon-circle-plus-outline"
-        >添加商品</el-button
-      > -->
       <el-cascader
         v-model="cat_value"
         class="mar"
