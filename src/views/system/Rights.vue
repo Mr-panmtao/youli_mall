@@ -10,7 +10,7 @@
       >
     </div>
     <div class="rights-body">
-      <el-table :data="rights_list" style="width: 100%" row-key="id">
+      <el-table  height="750" :data="rights_list" style="width: 100%" row-key="id">
         <el-table-column prop="rights_name" align="center" label="权限名称">
         </el-table-column>
         <el-table-column prop="rights_url" align="center" label="路径">

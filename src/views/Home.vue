@@ -219,7 +219,6 @@ export default {
 
     // 侧边栏点击
     isChecked (info, index) {
-      //   console.log(index)
       let navInfo = this.getTagNaveList()
       this.menuActive(info.path)
 

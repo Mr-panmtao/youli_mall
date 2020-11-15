@@ -66,7 +66,7 @@ export default {
     ]
     return {
       editorOption: {
-        placeholder: '请填写商品详情内容 ! ! !',
+        placeholder: '请填写详情内容 ! ! !',
         modules: {
           toolbar: {
             container: toolbarOptions,
@@ -119,6 +119,10 @@ export default {
     },
     editorData (val) {
       this.$emit('getEditorData', this.editorData)
+    },
+    editorVal (val) {
+      // 为富文本编辑器赋值 ===》编辑商品
+      this.editorData = val
     },
     content (val) {
       this.content = val

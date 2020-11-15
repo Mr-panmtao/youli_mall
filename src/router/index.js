@@ -35,6 +35,15 @@ const User = () => import('../views/user/User.vue')
 // 意见反馈
 const Feedback = () => import('../views/user/Feedback.vue')
 
+// 订单管理
+const Order = () => import('../views/order/Order.vue')
+// 广告管理
+const Advert = () => import('../views/advert/Advert.vue')
+// 导航管理
+const Navigator = () => import('../views/advert/Navigator.vue')
+// 公告管理
+const Notice = () => import('../views/notice/Notice.vue')
+
 // 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
@@ -62,7 +71,11 @@ const routes = [
       { name: 'updateGoods', path: '/updateGoods', component: updateGoods },
       { path: '/rating', component: Rating },
       { path: '/user', component: User },
-      { path: '/feedback', component: Feedback }
+      { path: '/feedback', component: Feedback },
+      { path: '/order', component: Order },
+      { path: '/advert', component: Advert },
+      { path: '/navigator', component: Navigator },
+      { path: '/notice', component: Notice }
     ]
   }
 ]

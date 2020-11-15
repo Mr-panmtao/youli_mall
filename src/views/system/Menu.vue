@@ -10,7 +10,7 @@
       >
     </div>
     <div class="menu-body">
-      <el-table :data="menu_list" style="width: 100%" row-key="id">
+      <el-table height="750" :data="menu_list" style="width: 100%" row-key="id">
         <el-table-column prop="menu_name" align="center" label="菜单名称">
         </el-table-column>
         <el-table-column align="center" label="菜单图标(elm)">
