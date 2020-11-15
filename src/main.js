@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import './main.css'
+import echarts from 'echarts'
 
 import { showLoading, hideLoading } from './utils/loading.js'
 
@@ -59,6 +60,7 @@ Vue.component('TreeTable', ZkTable)
 Vue.prototype.$axios = axios
 Vue.prototype.encryptString = encryptString
 Vue.prototype.decodeString = decodeString
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 

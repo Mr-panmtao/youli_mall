@@ -39,10 +39,14 @@ import {
   Tabs,
   TabPane,
   Alert,
-  Pagination
+  Pagination,
+  Row,
+  Col
 } from 'element-ui'
 
 Vue.use(Button)
+Vue.use(Row)
+Vue.use(Col)
 Vue.use(Pagination)
 Vue.use(Alert)
 Vue.use(Tabs)
